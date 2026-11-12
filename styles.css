@@ -11,12 +11,52 @@
   font-display:block;
 }
 
-:root{
-  --ink:#2b2c33;
-  --blue:#2196f3;
-  --paper:#ffffff;
-  --muted:#71737e;
+:root, html[data-theme="dark"]{
+  --bg:#030811;
+  --bg-soft:#04101c;
+  --surface:#071523;
+  --surface-2:#0a1c2e;
+  --surface-3:#0d253a;
+  --text:#e9fbff;
+  --muted-color:#8fb3c7;
+  --faint:#5f8197;
+  --accent:#22e6ff;
+  --accent-2:#19f0c8;
+  --accent-3:#7df9ff;
+  --border:#12354a;
+  --border-soft:rgba(34,230,255,0.14);
+  --danger:#ff6b8a;
+  --success:#3dffb5;
+  --shadow:0 22px 60px rgba(0,0,0,0.36);
+  --glow:0 0 26px rgba(34,230,255,0.22);
+  --ink:var(--text);
+  --blue:var(--accent);
+  --paper:var(--bg);
+  --muted:var(--muted-color);
   --ease:cubic-bezier(.19,1,.22,1);
+}
+html[data-theme="light"]{
+  --bg:#f8feff;
+  --bg-soft:#f0fbfd;
+  --surface:#ffffff;
+  --surface-2:#f6fdfe;
+  --surface-3:#eef9fb;
+  --text:#0f2a36;
+  --muted-color:#3d5f6d;
+  --faint:#5c7482;
+  --accent:#0891b2;
+  --accent-2:#0e7490;
+  --accent-3:#06b6d4;
+  --border:#d6eef3;
+  --border-soft:rgba(8,150,175,0.18);
+  --danger:#ff6b8a;
+  --success:#059669;
+  --shadow:0 22px 60px rgba(0,0,0,0.12);
+  --glow:0 0 26px rgba(8,145,178,0.18);
+  --ink:var(--text);
+  --blue:var(--accent);
+  --paper:var(--bg);
+  --muted:var(--muted-color);
 }
 
 html{-webkit-text-size-adjust:100%}
@@ -434,10 +474,147 @@ p a{transition:background-color .25s ease,color .25s ease}
   }
   .entry{display:none!important}
   body.booting{overflow:auto}
-  .logo,.menu{opacity:1!important;visibility:visible!important;transform:none!important}
+  .logo,.menu,.theme-toggle{opacity:1!important;visibility:visible!important;transform:none!important}
   section p,section h1,section .bar,section .card,section li,section hr,
   section .skills__bar,.thesis-panel,.more-work{opacity:1!important;transform:none!important;width:auto!important}
   section.entered .skills__bar{width:var(--pct)!important}
   section h1{border-left:15px solid var(--blue)!important}
   section h1 .bar{width:100%!important}
 }
+
+/* ============================================================
+   Theme toggle
+   ============================================================ */
+.theme-toggle{
+  position:absolute;
+  right:68px;
+  top:14px;
+  z-index:32;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  border:2px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+  cursor:pointer;
+  font-size:1.1rem;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(66px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease),visibility 0s,border-color .25s var(--ease),color .25s var(--ease);
+}
+body.site-ready .theme-toggle{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+  transition-delay:.24s;
+}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.theme-toggle:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* ============================================================
+   Cyber theme overrides
+   ============================================================ */
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--text)}
+p,li,code,blockquote{color:var(--text)}
+a{color:var(--text)}
+h1,h2,h3,h4,h5,h6{color:var(--text)}
+
+.header{
+  background:color-mix(in srgb,var(--bg-soft) 86%,transparent);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border-soft);
+}
+.logo a{color:var(--text)}
+.logo-copy{color:var(--text)}
+.logo-mark polygon{fill:var(--text)}
+.menu .box{background:var(--text)}
+.menu:hover .box,.menu.active .box{background:var(--accent)}
+
+/* section title panel */
+section h1{
+  background:var(--surface-2);
+  color:var(--text);
+  border-left-color:var(--accent);
+}
+section h1 .text{color:var(--text)}
+section h1 .bar{background:var(--surface-3)}
+section h1 .icon{color:var(--accent)}
+section hr{border-top-color:var(--border)}
+section p,section h2,section img{color:var(--text)}
+
+/* menu tiles */
+.element-box{
+  border-color:var(--border);
+  background:var(--surface);
+  color:var(--text);
+}
+.element-box:hover,.element-box.active{border-color:var(--accent)}
+.element-box .icon{background:var(--accent);color:var(--bg)}
+
+/* cards */
+.case-studies .card{
+  border-color:var(--border);
+  background:var(--surface);
+}
+.case-studies .card:before{background:var(--accent)}
+.case-studies .card:after{background:var(--surface-3)}
+.case-studies .card:hover .card-title,
+.case-studies .card:hover .card-desc{color:var(--text)}
+.case-studies .card-title{color:var(--text)}
+.case-studies .card-text .cta{
+  background:var(--surface-3);
+  color:var(--text);
+  border-color:var(--border);
+}
+.case-studies .card:hover .card-text .cta{
+  background:var(--paper);
+  color:var(--ink);
+}
+
+/* about */
+.focus-badge{border-color:var(--border);color:var(--text)}
+.about .logos li:hover .focus-badge{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.thesis-panel{border-color:var(--border);background:var(--surface)}
+.thesis-kicker{color:var(--accent)}
+.thesis-panel strong{color:var(--text)}
+.thesis-meta{color:var(--muted)}
+.about .skills__bar{background:var(--surface-3)}
+.about .skills__label{color:var(--text)}
+.about .skills__percent-number,.about .skills__percent-unit{color:var(--text)}
+
+/* achievements */
+.achievements .ui-corner:after,.achievements .ui-corner:before{background:var(--text)}
+.achievements .ui-pattern{
+  background:repeating-linear-gradient(-45deg,var(--border-soft),var(--border-soft) 2px,transparent 0,transparent 4px);
+}
+
+/* menu overlay */
+.primary-nav .overlay{background:color-mix(in srgb,var(--bg) 92%,transparent)}
+.primary-nav li{background:var(--surface)}
+.primary-nav a{color:var(--text);border-color:var(--border)}
+.primary-nav a:hover{color:var(--bg)}
+.primary-nav .element-box .icon{background:var(--accent);color:var(--bg)}
+
+/* contact */
+.contact-icons ul a{color:var(--text)}
+.contact-icons ul li:hover a{color:var(--accent)}
+
+/* more work */
+.more-work a{color:var(--text)}
+.more-work a:hover{color:var(--accent)}
+
+/* loader */
+.loader{background:var(--surface)}
+.loader .path{stroke:var(--accent)}
+
+/* error */
+.error .bar{background:var(--danger)}
+.error h1 .icon{color:var(--text)}
+
+/* entry terminal stays dark */
+.entry{background:#0c0c0c;color:#89ff69}

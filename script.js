@@ -14,6 +14,7 @@
   var loader = document.getElementById('loader');
   var header = document.querySelector('.header');
   var menuButton = document.getElementById('menuButton');
+  var themeToggle = document.getElementById('themeToggle');
   var headerWrap = document.getElementById('headerWrap');
   var primaryNav = document.getElementById('primaryNav');
   var menuOverlay = document.getElementById('menuOverlay');
@@ -37,6 +38,32 @@
   var scrambleFrame = null;
   var scrambleTimer = null;
   var lastScrollY = window.scrollY || 0;
+
+  /* ------------------------------------------------------------
+     Theme
+     ------------------------------------------------------------ */
+  function currentTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  }
+
+  function applyTheme(theme) {
+    theme = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.style.colorScheme = theme;
+    try { localStorage.setItem('ms-theme', theme); } catch (err) { /* no-op */ }
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+      themeToggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+      var icon = themeToggle.querySelector('.theme-toggle__icon');
+      if (icon) icon.textContent = theme === 'light' ? '☾' : '◐';
+    }
+  }
+
+  function toggleTheme() {
+    applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+  }
+
+  applyTheme(currentTheme());
 
   /* ------------------------------------------------------------
      Helpers
@@ -303,8 +330,8 @@
         loader.classList.add('hidden');
         introTimers.push(setTimeout(function () {
           if (loader.parentNode) loader.parentNode.removeChild(loader);
-        }, 550));
-      }, 620));
+        }, 700));
+      }, 1400));
     } else {
       loader.classList.add('hidden');
       if (loader.parentNode) loader.parentNode.removeChild(loader);
@@ -319,12 +346,12 @@
 
     if (entry && !prefersReduced) {
       entry.classList.add('leaving');
-      introTimers.push(setTimeout(function () { entry.classList.add('done'); }, 420));
+      introTimers.push(setTimeout(function () { entry.classList.add('done'); }, 600));
     } else if (entry) {
       entry.classList.add('done');
     }
 
-    revealSite(initialRoute, 420);
+    revealSite(initialRoute, 600);
   }
 
   function startIntro(initialRoute) {
@@ -334,20 +361,19 @@
     }
 
     introTimers.push(setTimeout(function () {
-      typeText('clear', typed, 95, function () {
+      typeText('clear', typed, 120, function () {
         introTimers.push(setTimeout(function () {
           finishIntro(initialRoute);
-        }, 420));
+        }, 900));
       });
-    }, 520));
+    }, 900));
   }
 
   /* ------------------------------------------------------------
      Boot
      ------------------------------------------------------------ */
   var initialRoute = routeFromHash();
-  var hasSeenIntro = false;
-  try { hasSeenIntro = sessionStorage.getItem('ms-portfolio-entered') === '1'; } catch (err) { /* no-op */ }
+  var hasSeenIntro = false; // always replay the intro on a fresh page load
   var hashPointsElsewhere = !!window.location.hash && initialRoute !== 'hello';
 
   if (prefersReduced || hasSeenIntro || hashPointsElsewhere) {
@@ -408,6 +434,7 @@
      Menu and header
      ------------------------------------------------------------ */
   menuButton.addEventListener('click', toggleMenu);
+  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
   if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
   if (skipBtn) skipBtn.addEventListener('click', function () {
     if (!entryDone) finishIntro(routeFromHash());
