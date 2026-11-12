@@ -1,6 +1,544 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Mohammad Sohrabi — engineer and security researcher"><link rel="icon" type="image/png" href="./logo.png"><link rel="apple-touch-icon" href="./logo.png"><title>Mohammad Sohrabi — infinite systems</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body>
-<div id="boot" class="boot"><div class="boot-box"><div class="boot-bar"><span>mohammad@localhost:~$</span><small>portfolio.init</small></div><div class="boot-copy"><p>initializing personal system...</p><p>loading <b>security</b> / <b>cryptography</b> / <b>systems</b></p><p class="ok">✓ interface ready</p></div><button id="launch">[ launch portfolio ] <i>↵</i></button></div><button id="skip" class="skip">Skip Animation »</button></div>
-<header class="header"><a class="logo" href="#hello"><img src="logo.png" alt="MS"> <span>mohammad<span class="lime">.sohrabi</span></span></a><button id="menuButton" class="menu-button">Menu <span>☰</span></button></header>
-<div id="menu" class="menu"><div class="menu-inner"><p class="menu-kicker">navigation / 00—05</p><a href="#hello"><small>00</small>hello</a><a href="#about"><small>01</small>about</a><a href="#achievements"><small>02</small>achievements</a><a href="#coding"><small>03</small>coding</a><a href="#design"><small>04</small>design</a><a href="#contact"><small>05</small>contact</a><div class="menu-social"><a href="https://github.com/C-Mohammad-Sohrabi" target="_blank">GitHub ↗</a><a href="#contact">email ↗</a></div></div></div>
-<main id="app"></main>
-<script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mohammad Sohrabi — computer science researcher and systems engineer working across cybersecurity, cryptography, networking and automation.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Mohammad Sohrabi — engineer &amp; security researcher</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/HelveticaNeue.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="fonts/HelveticaNeue-Bold.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="fonts/EBGaramond-Regular.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="fonts/iosevka-light.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="infinite.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=7">
+</head>
+<body class="booting">
+
+  <!-- ============================================================
+       Entry screen — terminal intro (ddaniel.dev style)
+       ============================================================ -->
+  <div class="entry" id="entry" aria-label="Portfolio boot sequence">
+    <button class="entry-skip" id="skipIntro" type="button">
+      <span>Skip Animation</span>
+      <img src="assets/chevrons-right.svg" alt="" aria-hidden="true">
+    </button>
+    <div class="term-lines" role="log" aria-live="polite">
+      <div class="term-line"><span class="term-prompt">mohammad@archlinux:~$</span><span>pwd</span></div>
+      <div class="term-out">/home/mohammad/portfolio</div>
+      <div class="term-line"><span class="term-prompt">mohammad@archlinux:~$</span><span>cd portfolio</span></div>
+      <div class="term-line"><span class="term-prompt">mohammad@archlinux:~$</span><span>ls</span></div>
+      <div class="term-out term-ls">cyberpulse/  cryptography/  liscan/  packet-capture/  graph/  automation/  research/</div>
+      <div class="term-line"><span class="term-prompt">mohammad@archlinux:~$</span><span class="term-typed" id="typedCommand"></span></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Loader
+       ============================================================ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <svg viewBox="25 25 50 50" class="circular">
+      <circle cx="50" cy="50" r="18" fill="none" stroke-width="3" stroke-miterlimit="10" class="path"></circle>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       Header
+       ============================================================ -->
+  <header class="header">
+    <div class="logo">
+      <a href="#/hello/" data-name="hello" aria-label="Mohammad Sohrabi — home">
+        <svg class="logo-mark" viewBox="0 0 50 40" aria-hidden="true" focusable="false">
+          <g fill="#383838">
+            <polygon points="49.651,20.053 42.592,4.759 35.533,4.759 42.592,20.053 35.533,35.347 42.592,35.347"></polygon>
+            <polygon points="0.239,20.053 7.298,4.759 14.357,4.759 7.298,20.053 14.357,35.347 7.298,35.347"></polygon>
+            <polygon points="15.533,40.053 27.298,0.053 34.357,0.053 22.592,40.053"></polygon>
+          </g>
+        </svg>
+        <span class="logo-copy"><span>mohammad</span><span>sohrabi</span></span>
+      </a>
+    </div>
+
+    <button type="button" aria-label="Menu" aria-expanded="false" aria-controls="primaryNav" class="menu" id="menuButton">
+      <div class="sr-only">Menu</div>
+      <span class="box tl"></span>
+      <span class="box tr"></span>
+      <span class="box bl"></span>
+      <span class="box br"></span>
+    </button>
+
+    <div class="header-wrap" id="headerWrap">
+      <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="primary-nav" id="primaryNav">
+        <span class="overlay" id="menuOverlay"></span>
+        <ul>
+          <li>
+            <a href="#/hello/" data-name="hello" rel="nofollow" class="element-box">
+              <span class="text"><span aria-hidden="true" class="abbr">Ho</span><span class="full">home</span></span>
+              <span class="icon icon-infinite"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#/about/" data-name="about" rel="nofollow" class="element-box">
+              <span class="text"><span aria-hidden="true" class="abbr">Ab</span><span class="full">about</span></span>
+              <span class="icon icon-about"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#/achievements/" data-name="achievements" rel="nofollow" class="element-box">
+              <span class="text"><span aria-hidden="true" class="abbr">Ac</span><span class="full">achievements</span></span>
+              <span class="icon icon-achievements"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#/coding/" data-name="coding" rel="nofollow" class="element-box">
+              <span class="text"><span aria-hidden="true" class="abbr">Co</span><span class="full">coding</span></span>
+              <span class="icon icon-coding"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#/design/" data-name="design" rel="nofollow" class="element-box">
+              <span class="text"><span aria-hidden="true" class="abbr">De</span><span class="full">design</span></span>
+              <span class="icon icon-design"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#/contact/" data-name="contact" rel="nofollow" class="element-box">
+              <span class="text"><span aria-hidden="true" class="abbr">Ct</span><span class="full">contact</span></span>
+              <span class="icon icon-email"></span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       Pages
+       ============================================================ -->
+  <main id="main">
+
+    <!-- 00 — hello -->
+    <section class="hello active">
+      <div class="container">
+        <div class="wrap">
+          <div class="col-10 col-offset-1">
+            <h1>
+              <span data-text="Hello World..." class="text">Hello World...</span>
+              <span class="bar"></span>
+            </h1>
+
+            <p>I'm <a href="#/about/" data-text="Mohammad Sohrabi,"><span>Mohammad Sohrabi,</span></a> a computer science researcher and systems engineer working across cybersecurity, cryptography, low-level C and practical automation. I like understanding how things work all the way down, then building tools that are clear, safe and genuinely useful.</p>
+
+            <p>Get to know a bit more <a href="#/about/" data-text="about my skills"><span>about my skills</span></a> or feel free to look around my <a href="#/coding/" data-text="coding"><span>coding</span></a> and <a href="#/design/" data-text="design"><span>design</span></a> works.</p>
+
+            <hr>
+
+            <nav>
+              <ul>
+                <li>
+                  <a href="#/about/" data-name="about" class="element-box">
+                    <span class="text"><span aria-hidden="true" class="abbr">Ab</span><span class="full">about</span></span>
+                    <span class="icon icon-about"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#/achievements/" data-name="achievements" class="element-box">
+                    <span class="text"><span aria-hidden="true" class="abbr">Ac</span><span class="full">achievements</span></span>
+                    <span class="icon icon-achievements"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#/coding/" data-name="coding" class="element-box">
+                    <span class="text"><span aria-hidden="true" class="abbr">Co</span><span class="full">coding</span></span>
+                    <span class="icon icon-coding"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#/design/" data-name="design" class="element-box">
+                    <span class="text"><span aria-hidden="true" class="abbr">De</span><span class="full">design</span></span>
+                    <span class="icon icon-design"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#/contact/" data-name="contact" class="element-box">
+                    <span class="text"><span aria-hidden="true" class="abbr">Ct</span><span class="full">contact</span></span>
+                    <span class="icon icon-email"></span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+
+            <div class="contact-icons">
+              <ul itemscope itemtype="http://schema.org/Organization">
+                <li>
+                  <a href="https://github.com/C-Mohammad-Sohrabi" target="_blank" itemprop="sameAs" rel="noopener">
+                    <span class="sr-only">GitHub</span><i class="icon icon-github"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://t.me/CyberPulseChannel" target="_blank" rel="noopener">
+                    <span class="sr-only">Telegram</span><i class="icon icon-email"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/C-Mohammad-Sohrabi/C-Mohammad-Sohrabi.github.io" target="_blank" rel="noopener">
+                    <span class="sr-only">Website source</span><i class="icon icon-coding"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:sohrabi300.m@gmail.com" rel="noopener">
+                    <span class="sr-only">eMail</span><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 5.2c0-.66.54-1.2 1.2-1.2h17.6c.66 0 1.2.54 1.2 1.2v13.6c0 .66-.54 1.2-1.2 1.2H3.2c-.66 0-1.2-.54-1.2-1.2V5.2Zm2.34.8L12 11.18 19.66 6H4.34Zm16.66 1.73-8.55 5.78a.9.9 0 0 1-1 0L3 7.73v10.27h18V7.73Z"/></svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 — about -->
+    <section class="about">
+      <div class="container">
+        <div class="wrap">
+          <div class="col-12">
+            <h1>
+              <span data-text="// about" class="text">// about</span>
+              <span class="bar"><i class="icon icon-about"></i></span>
+            </h1>
+
+            <div class="wrap">
+              <div class="col-l col-6">
+                <p>I'm a computer science graduate student and builder. I like understanding systems all the way down — from the byte layout of a cipher to the way a packet moves through a socket — and then turning that understanding into tools other people can actually use.</p>
+                <p>My work sits between <strong>security research</strong> and <strong>practical engineering</strong>: C libraries, packet capture, port scanning, Telegram automation, and a master's thesis on improving the Ascon authenticated cipher for constrained IoT devices with combinatorial methods.</p>
+                <p>Most of the time I write the thing from scratch, keep the interfaces small, and test the parts that are easy to get subtly wrong.</p>
+              </div>
+
+              <div class="col-r col-6">
+                <h2>Skillset Breakdown</h2>
+                <div class="skills">
+                  <div class="skills__bar" data-percent="90" style="--pct:90%">
+                    <div class="skills__label">C / systems programming</div>
+                    <div class="skills__percent"><span class="skills__percent-number">90.0</span><span class="skills__percent-unit">%</span></div>
+                  </div>
+                  <div class="skills__bar" data-percent="86" style="--pct:86%">
+                    <div class="skills__label">Security research</div>
+                    <div class="skills__percent"><span class="skills__percent-number">86.0</span><span class="skills__percent-unit">%</span></div>
+                  </div>
+                  <div class="skills__bar" data-percent="84" style="--pct:84%">
+                    <div class="skills__label">Cryptography</div>
+                    <div class="skills__percent"><span class="skills__percent-number">84.0</span><span class="skills__percent-unit">%</span></div>
+                  </div>
+                  <div class="skills__bar" data-percent="86" style="--pct:86%">
+                    <div class="skills__label">Python / automation</div>
+                    <div class="skills__percent"><span class="skills__percent-number">86.0</span><span class="skills__percent-unit">%</span></div>
+                  </div>
+                  <div class="skills__bar" data-percent="78" style="--pct:78%">
+                    <div class="skills__label">JavaScript / interfaces</div>
+                    <div class="skills__percent"><span class="skills__percent-number">78.0</span><span class="skills__percent-unit">%</span></div>
+                  </div>
+                  <div class="skills__bar" data-percent="82" style="--pct:82%">
+                    <div class="skills__label">Linux / networking</div>
+                    <div class="skills__percent"><span class="skills__percent-number">82.0</span><span class="skills__percent-unit">%</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="logos">
+              <p>What I keep coming back to:</p>
+              <ul>
+                <li><span class="focus-badge">systems</span></li>
+                <li><span class="focus-badge">security</span></li>
+                <li><span class="focus-badge">cryptography</span></li>
+                <li><span class="focus-badge">networking</span></li>
+                <li><span class="focus-badge">automation</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — achievements -->
+    <section class="achievements">
+      <div class="container">
+        <div class="wrap">
+          <div class="col-12">
+            <h1>
+              <span data-text="// achievements" class="text">// achievements</span>
+              <span class="bar"><i class="icon icon-achievements"></i></span>
+            </h1>
+
+            <div class="wrap">
+              <div class="col-l col-6">
+                <p>My master's thesis at Shahed University studies how <strong>combinatorial methods</strong> can improve <strong>Ascon</strong> — the lightweight authenticated-encryption standard built for constrained IoT devices. The work lives between graph theory, cipher design and implementation, with reference code kept alongside the research.</p>
+
+                <div class="thesis-panel" aria-label="Thesis summary">
+                  <span class="thesis-kicker">M.Sc. thesis · Shahed University</span>
+                  <strong>Improving Ascon in the Internet of Things with combinatorial methods</strong>
+                  <span class="thesis-meta">cryptography · IoT · graph theory · C</span>
+                </div>
+
+                <p>Outside the thesis I keep a cryptography lab of reference implementations and test harnesses, and I build the security and automation tools that I want to exist.</p>
+              </div>
+
+              <div class="col-r col-6">
+                <div class="listing">
+                  <h2>Milestones</h2>
+                  <ul>
+                    <li>M.Sc. research on Ascon for IoT — <strong>Shahed University</strong></li>
+                    <li><a href="https://t.me/CyberPulseChannel" target="_blank" rel="noopener">CyberPulse — 115 public feeds, AI-filtered digests</a></li>
+                    <li>Five independent Telegram Mini Apps on serverless infrastructure</li>
+                    <li><a href="https://github.com/C-Mohammad-Sohrabi/Lightweight_Port_Scanner" target="_blank" rel="noopener">LiScan — an embeddable IPv4 scanner in C</a></li>
+                    <li><a href="https://github.com/C-Mohammad-Sohrabi/txxtea128-suite" target="_blank" rel="noopener">XXTEA 128 — reviewed C implementation with sanitizers</a></li>
+                    <li><a href="https://github.com/C-Mohammad-Sohrabi/Graph_Prj" target="_blank" rel="noopener">Advanced graph theory — from Havel–Hakimi to Bron–Kerbosch</a></li>
+                    <li>Private automation work — serverless forex news bots with archival delivery</li>
+                  </ul>
+                </div>
+
+                <div class="listing">
+                  <h2>Research themes</h2>
+                  <ul>
+                    <li>Lightweight authenticated encryption</li>
+                    <li>Combinatorial constructions and graph methods</li>
+                    <li>IoT security and constrained devices</li>
+                    <li>Network measurement and packet-level tooling</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="nominations">
+              <h2>By the numbers</h2>
+              <ul>
+                <li>
+                  <div class="title">115 feeds<div class="light">CyberPulse sources</div></div>
+                  <div class="ui"><div class="ui-corner ui-corner__ul"></div><div class="ui-corner ui-corner__ur"></div><div class="ui-corner ui-corner__bl"></div><div class="ui-corner ui-corner__br"></div><div class="ui-pattern"></div></div>
+                </li>
+                <li>
+                  <div class="title">5 apps<div class="light">Telegram Mini Apps</div></div>
+                  <div class="ui"><div class="ui-corner ui-corner__ul"></div><div class="ui-corner ui-corner__ur"></div><div class="ui-corner ui-corner__bl"></div><div class="ui-corner ui-corner__br"></div><div class="ui-pattern"></div></div>
+                </li>
+                <li>
+                  <div class="title">90 days<div class="light">public news archive</div></div>
+                  <div class="ui"><div class="ui-corner ui-corner__ul"></div><div class="ui-corner ui-corner__ur"></div><div class="ui-corner ui-corner__bl"></div><div class="ui-corner ui-corner__br"></div><div class="ui-pattern"></div></div>
+                </li>
+                <li>
+                  <div class="title">C11<div class="light">systems work</div></div>
+                  <div class="ui"><div class="ui-corner ui-corner__ul"></div><div class="ui-corner ui-corner__ur"></div><div class="ui-corner ui-corner__bl"></div><div class="ui-corner ui-corner__br"></div><div class="ui-pattern"></div></div>
+                </li>
+                <li>
+                  <div class="title">M.Sc.<div class="light">Ascon &amp; IoT research</div></div>
+                  <div class="ui"><div class="ui-corner ui-corner__ul"></div><div class="ui-corner ui-corner__ur"></div><div class="ui-corner ui-corner__bl"></div><div class="ui-corner ui-corner__br"></div><div class="ui-pattern"></div></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — coding -->
+    <section class="case-studies coding">
+      <div class="container">
+        <div class="wrap">
+          <div class="col-12">
+            <h1>
+              <span data-text="// coding" class="text">// coding</span>
+              <span class="bar"><i class="icon icon-coding"></i></span>
+            </h1>
+
+            <div class="wrap">
+              <div itemscope itemtype="http://schema.org/CreativeWork" class="col col-6">
+                <a href="https://t.me/CyberPulseChannel" target="_blank" rel="noopener" itemprop="url" class="card-link">
+                  <div class="card card--tall">
+                    <div class="card-wrap">
+                      <img class="project-cover" src="assets/covers/cyberpulse.svg" alt="" loading="lazy">
+                      <div class="card-text">
+                        <span aria-hidden="true" itemprop="name" class="card-title">CyberPulse</span>
+                        <div class="cta">Visit channel<div class="cta-icon"><i class="icon icon-chevron-right"></i><i class="icon icon-chevron-right"></i></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div itemscope itemtype="http://schema.org/CreativeWork" class="col col-6">
+                <a href="https://github.com/C-Mohammad-Sohrabi/Lightweight_Port_Scanner" target="_blank" rel="noopener" itemprop="url" class="card-link">
+                  <div class="card">
+                    <div class="card-wrap">
+                      <img class="project-cover" src="assets/covers/liscan.svg" alt="" loading="lazy">
+                      <div class="card-text">
+                        <span aria-hidden="true" itemprop="name" class="card-title">LiScan</span>
+                        <div class="cta">View repository<div class="cta-icon"><i class="icon icon-chevron-right"></i><i class="icon icon-chevron-right"></i></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+                <a href="https://github.com/C-Mohammad-Sohrabi/txxtea128-suite" target="_blank" rel="noopener" itemprop="url" class="card-link">
+                  <div class="card">
+                    <div class="card-wrap">
+                      <img class="project-cover" src="assets/covers/txxtea.svg" alt="" loading="lazy">
+                      <div class="card-text">
+                        <span aria-hidden="true" itemprop="name" class="card-title">XXTEA 128</span>
+                        <div class="cta">View repository<div class="cta-icon"><i class="icon icon-chevron-right"></i><i class="icon icon-chevron-right"></i></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="listing more-work">
+              <h2>More systems work</h2>
+              <ul>
+                <li><a href="https://github.com/C-Mohammad-Sohrabi/Graph_Prj" target="_blank" rel="noopener">Advanced Graph Theory — Havel–Hakimi, cliques, covers, Euler paths and line graphs in C</a></li>
+                <li><a href="https://github.com/C-Mohammad-Sohrabi/Lightweight_Packet_Capture" target="_blank" rel="noopener">Lightweight Packet Capture — a cross-platform libpcap/Npcap sniffer with filters</a></li>
+                <li><a href="https://github.com/C-Mohammad-Sohrabi/C-Mohammad-Sohrabi.github.io" target="_blank" rel="noopener">This portfolio — the terminal entry, hash router and page transitions</a></li>
+                <li>Also in the lab: a serverless forex news bot and a five-app Telegram suite</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — design -->
+    <section class="case-studies design">
+      <div class="container">
+        <div class="wrap">
+          <div class="col-12">
+            <h1>
+              <span data-text="// design" class="text">// design</span>
+              <span class="bar"><i class="icon icon-design"></i></span>
+            </h1>
+
+            <div class="wrap">
+              <div itemscope itemtype="http://schema.org/CreativeWork" class="col col-6">
+                <a href="https://t.me/ShrtlyLinkBot" target="_blank" rel="noopener" itemprop="url" class="card-link">
+                  <div class="card card--tall">
+                    <div class="card-wrap">
+                      <img class="project-cover" src="assets/covers/telegram.svg" alt="" loading="lazy">
+                      <div class="card-text">
+                        <span aria-hidden="true" itemprop="name" class="card-title">Telegram Mini Apps</span>
+                        <div class="cta">Open Shrtly<div class="cta-icon"><i class="icon icon-chevron-right"></i><i class="icon icon-chevron-right"></i></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div itemscope itemtype="http://schema.org/CreativeWork" class="col col-6">
+                <a href="https://github.com/C-Mohammad-Sohrabi/C-Mohammad-Sohrabi.github.io" target="_blank" rel="noopener" itemprop="url" class="card-link">
+                  <div class="card">
+                    <div class="card-wrap">
+                      <img class="project-cover" src="assets/covers/portfolio.svg" alt="" loading="lazy">
+                      <div class="card-text">
+                        <span aria-hidden="true" itemprop="name" class="card-title">This portfolio</span>
+                        <div class="cta">View source<div class="cta-icon"><i class="icon icon-chevron-right"></i><i class="icon icon-chevron-right"></i></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+                <a href="https://t.me/CyberPulseChannel" target="_blank" rel="noopener" itemprop="url" class="card-link">
+                  <div class="card">
+                    <div class="card-wrap">
+                      <img class="project-cover" src="assets/covers/cyberpulse.svg" alt="" loading="lazy">
+                      <div class="card-text">
+                        <span aria-hidden="true" itemprop="name" class="card-title">CyberPulse Channel</span>
+                        <div class="cta">Open channel<div class="cta-icon"><i class="icon icon-chevron-right"></i><i class="icon icon-chevron-right"></i></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="listing more-work">
+              <h2>Interface notes</h2>
+              <ul>
+                <li>Bazaario — catalog, stock, Stars checkout, seller panel and real refunds</li>
+                <li>Shrtly — short links, QR codes, link-in-bio pages and device statistics</li>
+                <li>Slotly — services, working hours, real free slots and provider bookings</li>
+                <li>Quizly — quizzes and polls with server-side scoring and live results</li>
+                <li>Relist — second-hand listings with search, offers and delivery confirmation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — contact -->
+    <section class="contact">
+      <div class="container">
+        <div class="wrap">
+          <div class="col-12">
+            <h1>
+              <span data-text="// contact" class="text">// contact</span>
+              <span class="bar"><i class="icon icon-email"></i></span>
+            </h1>
+
+            <p>If you want to talk about systems, security research, cryptography, or a project that needs building — my inbox is open.</p>
+            <br>
+            <p>I'm always up for anything geeky. ^_^</p>
+
+            <div class="contact-icons">
+              <ul itemscope itemtype="http://schema.org/Organization">
+                <li>
+                  <a href="https://github.com/C-Mohammad-Sohrabi" target="_blank" itemprop="sameAs" rel="noopener">
+                    <span class="sr-only">GitHub</span><i class="icon icon-github"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://t.me/CyberPulseChannel" target="_blank" rel="noopener">
+                    <span class="sr-only">Telegram</span><i class="icon icon-email"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/C-Mohammad-Sohrabi/C-Mohammad-Sohrabi.github.io" target="_blank" rel="noopener">
+                    <span class="sr-only">Website source</span><i class="icon icon-coding"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:sohrabi300.m@gmail.com" rel="noopener">
+                    <span class="sr-only">eMail</span><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 5.2c0-.66.54-1.2 1.2-1.2h17.6c.66 0 1.2.54 1.2 1.2v13.6c0 .66-.54 1.2-1.2 1.2H3.2c-.66 0-1.2-.54-1.2-1.2V5.2Zm2.34.8L12 11.18 19.66 6H4.34Zm16.66 1.73-8.55 5.78a.9.9 0 0 1-1 0L3 7.73v10.27h18V7.73Z"/></svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 404 -->
+    <section class="error">
+      <div class="container">
+        <div class="wrap">
+          <div class="col-10 col-offset-1">
+            <h1>
+              <span data-text="// oops!" class="text">// oops!</span>
+              <span class="bar"><i class="icon icon-warning"></i></span>
+            </h1>
+            <p>Sorry, the page you are looking for does not exist</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js?v=7"></script>
+</body>
+</html>
