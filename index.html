@@ -12,6 +12,17 @@
 </head>
 <body>
   <div class="noise"></div>
+  <section id="boot-screen" class="boot-screen" aria-label="Portfolio startup">
+    <div class="boot-window">
+      <div class="boot-top"><span>mohammad@archlinux:~$</span><small>portfolio.sh</small></div>
+      <div class="boot-lines" aria-live="polite">
+        <p class="boot-line">pwd</p><p class="boot-output">/home/mohammad/portfolio</p>
+        <p class="boot-line">ls</p><p class="boot-output">security/  cryptography/  systems/  automation/</p>
+        <p class="boot-line">./start-portfolio</p><p class="boot-output accent-output">Building a useful interface...</p>
+      </div>
+      <button id="enter-site" class="enter-site" type="button">[ enter portfolio ] <span>↵</span></button>
+    </div>
+  </section>
   <header class="topbar">
     <a class="brand" href="#top"><span class="prompt">~/</span> mohammad<span class="accent">.sohrabi</span></a>
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
@@ -20,6 +31,7 @@
       <a class="nav-github" href="https://github.com/C-Mohammad-Sohrabi" target="_blank" rel="noreferrer">github ↗</a>
     </nav>
   </header>
+  <aside class="side-nav" aria-label="Quick navigation"><a href="#top" class="side-active"><b>Hi</b><span>hello</span></a><a href="#work"><b>Wr</b><span>work</span></a><a href="#about"><b>Ab</b><span>about</span></a><a href="#contact"><b>Ct</b><span>contact</span></a></aside>
 
   <main id="top">
     <section class="hero section-shell">
