@@ -124,9 +124,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
 }
 .logo-mark{display:block;flex:none;width:50px;height:40px;object-fit:contain}
 
-/* logo watermark on card hover */
+/* logo watermark on card hover (under content, no blue fill) */
 .case-studies .card{position:relative;overflow:hidden}
-.case-studies .card::after{
+.case-studies .card:hover::before,
+.case-studies .card:hover::after{width:0 !important}
+.case-studies .card-wrap{position:relative}
+.case-studies .card-wrap::after{
   content:"";
   position:absolute;
   right:14px;
@@ -140,10 +143,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
   pointer-events:none;
   z-index:2;
 }
-.case-studies .card:hover::after{
-  opacity:.18;
+.case-studies .card:hover .card-wrap::after{
+  opacity:.22;
   transform:translateY(0) scale(1);
 }
+.case-studies .card:hover .card-title{color:var(--blue)}
+.case-studies .card:hover .card-text .cta{background:var(--blue);color:#fff;max-width:230px}
 .logo-copy{
   display:flex;
   flex-direction:column;
