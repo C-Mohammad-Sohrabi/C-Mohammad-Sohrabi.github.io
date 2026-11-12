@@ -177,8 +177,6 @@ body.site-ready .logo{
   opacity:1;
   visibility:visible;
   transform:none;
-  transition:opacity .5s var(--ease),transform .5s var(--ease),visibility 0s;
-  transition-delay:.18s;
 }
 
 .menu{
@@ -191,8 +189,6 @@ body.site-ready .menu{
   opacity:1;
   visibility:visible;
   transform:none;
-  transition:opacity .5s var(--ease),transform .5s var(--ease),visibility 0s;
-  transition-delay:.26s;
 }
 .menu:hover .box,.menu.active .box{background:var(--blue)}
 .header-wrap{z-index:31}
@@ -509,7 +505,6 @@ body.site-ready .theme-toggle{
   opacity:1;
   visibility:visible;
   transform:none;
-  transition-delay:.24s;
 }
 .theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
 .theme-toggle:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
@@ -615,6 +610,13 @@ section p,section h2,section img{color:var(--text)}
 /* error */
 .error .bar{background:var(--danger)}
 .error h1 .icon{color:var(--text)}
+
+/* text colors that infinite.css hardcodes */
+.text{color:var(--text)}
+.hello nav .text{color:var(--text)}
+.element-box .text{color:var(--text)}
+.achievements .nominations .title{color:var(--text)}
+.about .skills__percent{color:var(--text)}
 
 /* entry terminal stays dark */
 .entry{background:#0c0c0c;color:#89ff69}
