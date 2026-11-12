@@ -621,6 +621,14 @@ section p,section h2,section img{color:var(--text)}
   transition:none;
 }
 
+/* hello title panel bar follows theme */
+.hello h1 .bar{background:var(--surface-3)}
+
+/* mobile menu clears the fixed header */
+@media (max-width:767px){
+  .primary-nav ul{margin-top:88px}
+}
+
 /* text colors that infinite.css hardcodes */
 .text{color:var(--text)}
 .hello nav .text{color:var(--text)}
