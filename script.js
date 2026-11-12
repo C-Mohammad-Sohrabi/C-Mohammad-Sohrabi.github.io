@@ -14,7 +14,6 @@
   var loader = document.getElementById('loader');
   var header = document.querySelector('.header');
   var menuButton = document.getElementById('menuButton');
-  var themeToggle = document.getElementById('themeToggle');
   var headerWrap = document.getElementById('headerWrap');
   var primaryNav = document.getElementById('primaryNav');
   var menuOverlay = document.getElementById('menuOverlay');
@@ -38,32 +37,6 @@
   var scrambleFrame = null;
   var scrambleTimer = null;
   var lastScrollY = window.scrollY || 0;
-
-  /* ------------------------------------------------------------
-     Theme
-     ------------------------------------------------------------ */
-  function currentTheme() {
-    return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-  }
-
-  function applyTheme(theme) {
-    theme = theme === 'light' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', theme);
-    document.documentElement.style.colorScheme = theme;
-    try { localStorage.setItem('ms-theme', theme); } catch (err) { /* no-op */ }
-    if (themeToggle) {
-      themeToggle.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
-      themeToggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
-      var icon = themeToggle.querySelector('.theme-toggle__icon');
-      if (icon) icon.textContent = theme === 'light' ? '☾' : '◐';
-    }
-  }
-
-  function toggleTheme() {
-    applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
-  }
-
-  applyTheme(currentTheme());
 
   /* ------------------------------------------------------------
      Helpers
@@ -373,7 +346,8 @@
      Boot
      ------------------------------------------------------------ */
   var initialRoute = routeFromHash();
-  var hasSeenIntro = false; // always replay the intro on a fresh page load
+  var hasSeenIntro = false;
+  var hasSeenIntro = false;
   var hashPointsElsewhere = !!window.location.hash && initialRoute !== 'hello';
 
   if (prefersReduced || hasSeenIntro || hashPointsElsewhere) {
@@ -434,7 +408,6 @@
      Menu and header
      ------------------------------------------------------------ */
   menuButton.addEventListener('click', toggleMenu);
-  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
   if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
   if (skipBtn) skipBtn.addEventListener('click', function () {
     if (!entryDone) finishIntro(routeFromHash());
