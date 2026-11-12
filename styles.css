@@ -12,23 +12,23 @@
 }
 
 :root, html[data-theme="dark"]{
-  --bg:#030811;
-  --bg-soft:#04101c;
-  --surface:#071523;
-  --surface-2:#0a1c2e;
-  --surface-3:#0d253a;
-  --text:#e9fbff;
-  --muted-color:#8fb3c7;
-  --faint:#5f8197;
-  --accent:#22e6ff;
-  --accent-2:#19f0c8;
-  --accent-3:#7df9ff;
-  --border:#12354a;
-  --border-soft:rgba(34,230,255,0.14);
-  --danger:#ff6b8a;
-  --success:#3dffb5;
-  --shadow:0 22px 60px rgba(0,0,0,0.36);
-  --glow:0 0 26px rgba(34,230,255,0.22);
+  --bg:#0c0c0c;
+  --bg-soft:#0a0a0a;
+  --surface:#111111;
+  --surface-2:#1a1a1a;
+  --surface-3:#222222;
+  --text:#89ff69;
+  --muted-color:#5fcf4f;
+  --faint:#3a8f30;
+  --accent:#89ff69;
+  --accent-2:#69ff8a;
+  --accent-3:#b0ff9a;
+  --border:#1f3f1f;
+  --border-soft:rgba(137,255,105,0.18);
+  --danger:#ff6b6b;
+  --success:#89ff69;
+  --shadow:0 22px 60px rgba(0,0,0,0.6);
+  --glow:0 0 26px rgba(137,255,105,0.25);
   --ink:var(--text);
   --blue:var(--accent);
   --paper:var(--bg);
@@ -36,23 +36,23 @@
   --ease:cubic-bezier(.19,1,.22,1);
 }
 html[data-theme="light"]{
-  --bg:#f8feff;
-  --bg-soft:#f0fbfd;
+  --bg:#f4fff0;
+  --bg-soft:#eaffea;
   --surface:#ffffff;
-  --surface-2:#f6fdfe;
-  --surface-3:#eef9fb;
-  --text:#0f2a36;
-  --muted-color:#3d5f6d;
-  --faint:#5c7482;
-  --accent:#0891b2;
-  --accent-2:#0e7490;
-  --accent-3:#06b6d4;
-  --border:#d6eef3;
-  --border-soft:rgba(8,150,175,0.18);
-  --danger:#ff6b8a;
-  --success:#059669;
+  --surface-2:#f0fff0;
+  --surface-3:#e6ffe6;
+  --text:#0a2a0a;
+  --muted-color:#2d5a2d;
+  --faint:#5a8a5a;
+  --accent:#1a8f1a;
+  --accent-2:#0f6f0f;
+  --accent-3:#2fbf2f;
+  --border:#b8e6b8;
+  --border-soft:rgba(26,143,26,0.18);
+  --danger:#dc2626;
+  --success:#16a34a;
   --shadow:0 22px 60px rgba(0,0,0,0.12);
-  --glow:0 0 26px rgba(8,145,178,0.18);
+  --glow:0 0 26px rgba(26,143,26,0.18);
   --ink:var(--text);
   --blue:var(--accent);
   --paper:var(--bg);
@@ -610,6 +610,16 @@ section p,section h2,section img{color:var(--text)}
 /* error */
 .error .bar{background:var(--danger)}
 .error h1 .icon{color:var(--text)}
+
+/* instant menu open */
+.primary-nav,
+.primary-nav.active,
+.primary-nav .overlay,
+.primary-nav.active .overlay,
+.primary-nav li,
+.primary-nav.active li{
+  transition:none;
+}
 
 /* text colors that infinite.css hardcodes */
 .text{color:var(--text)}
