@@ -441,3 +441,106 @@ p a{transition:background-color .25s ease,color .25s ease}
   section h1{border-left:15px solid var(--blue)!important}
   section h1 .bar{width:100%!important}
 }
+
+/* Theme toggle */
+.theme-toggle{
+  position:absolute;
+  right:68px;
+  top:14px;
+  z-index:32;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  border:2px solid var(--ink);
+  background:var(--paper);
+  color:var(--ink);
+  cursor:pointer;
+  font-size:1.1rem;
+}
+body.site-ready .theme-toggle{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+}
+.theme-toggle:hover{border-color:var(--blue);color:var(--blue)}
+
+/* Dark mode overrides */
+html[data-theme="dark"] body{background:#121212;color:#e8e8e8}
+html[data-theme="dark"] p,
+html[data-theme="dark"] li,
+html[data-theme="dark"] code,
+html[data-theme="dark"] blockquote{color:#e8e8e8}
+html[data-theme="dark"] a{color:#e8e8e8}
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6{color:#e8e8e8}
+html[data-theme="dark"] .text{color:#e8e8e8}
+html[data-theme="dark"] .hello nav .text{color:#e8e8e8}
+
+html[data-theme="dark"] .header{background:#1e1e1e;border-bottom:1px solid #333}
+html[data-theme="dark"] .logo a{color:#e8e8e8}
+html[data-theme="dark"] .logo-copy{color:#e8e8e8}
+html[data-theme="dark"] .logo-mark polygon{fill:#e8e8e8}
+html[data-theme="dark"] .menu .box{background:#e8e8e8}
+html[data-theme="dark"] .menu:hover .box,
+html[data-theme="dark"] .menu.active .box{background:var(--blue)}
+
+html[data-theme="dark"] section h1{background:#2a2a2a;color:#e8e8e8}
+html[data-theme="dark"] section h1 .text{color:#e8e8e8}
+html[data-theme="dark"] section h1 .bar{background:#1a1a1a}
+html[data-theme="dark"] section h1 .icon{color:var(--blue)}
+html[data-theme="dark"] section hr{border-top-color:#444}
+
+html[data-theme="dark"] .element-box{border-color:#444;background:#2a2a2a;color:#e8e8e8}
+html[data-theme="dark"] .element-box:hover,
+html[data-theme="dark"] .element-box.active{border-color:var(--blue)}
+html[data-theme="dark"] .element-box .icon{background:var(--blue);color:#fff}
+
+html[data-theme="dark"] .case-studies .card{border-color:#444;background:#2a2a2a}
+html[data-theme="dark"] .case-studies .card:before{background:var(--blue)}
+html[data-theme="dark"] .case-studies .card:after{background:#1a1a1a}
+html[data-theme="dark"] .case-studies .card-title{color:#e8e8e8}
+html[data-theme="dark"] .case-studies .card-text .cta{background:#1a1a1a;color:#e8e8e8}
+html[data-theme="dark"] .case-studies .card:hover .card-text .cta{background:#fff;color:#2b2c33}
+
+html[data-theme="dark"] .thesis-panel{border-color:#444;background:#2a2a2a}
+html[data-theme="dark"] .thesis-kicker{color:var(--blue)}
+html[data-theme="dark"] .thesis-panel strong{color:#e8e8e8}
+html[data-theme="dark"] .thesis-meta{color:#aaa}
+
+html[data-theme="dark"] .focus-badge{border-color:#444;color:#e8e8e8}
+html[data-theme="dark"] .about .logos li:hover .focus-badge{background:var(--blue);border-color:var(--blue);color:#fff}
+html[data-theme="dark"] .about .skills__bar{background:#1a1a1a}
+html[data-theme="dark"] .about .skills__label{color:#fff}
+html[data-theme="dark"] .about .skills__percent-number,
+html[data-theme="dark"] .about .skills__percent-unit{color:#fff}
+
+html[data-theme="dark"] .achievements .ui-corner:after,
+html[data-theme="dark"] .achievements .ui-corner:before{background:#e8e8e8}
+html[data-theme="dark"] .achievements .ui-pattern{background:repeating-linear-gradient(-45deg,#333,#333 2px,transparent 0,transparent 4px)}
+
+html[data-theme="dark"] .primary-nav .overlay{background:rgba(0,0,0,.92)}
+html[data-theme="dark"] .primary-nav li{background:#2a2a2a}
+html[data-theme="dark"] .primary-nav a{color:#e8e8e8;border-color:#444}
+html[data-theme="dark"] .primary-nav a:hover{color:#fff}
+html[data-theme="dark"] .primary-nav .element-box .icon{background:var(--blue);color:#fff}
+
+html[data-theme="dark"] .contact-icons ul a{color:#e8e8e8}
+html[data-theme="dark"] .contact-icons ul li:hover a{color:var(--blue)}
+
+html[data-theme="dark"] .more-work a{color:#e8e8e8}
+html[data-theme="dark"] .more-work a:hover{color:var(--blue)}
+
+html[data-theme="dark"] .loader{background:#2a2a2a}
+html[data-theme="dark"] .loader .path{stroke:var(--blue)}
+
+html[data-theme="dark"] .error .bar{background:#c00}
+html[data-theme="dark"] .error h1 .icon{color:#fff}
+
+html[data-theme="dark"] .theme-toggle{border-color:#444;background:#2a2a2a;color:#e8e8e8}
+html[data-theme="dark"] .theme-toggle:hover{border-color:var(--blue);color:var(--blue)}

@@ -14,6 +14,7 @@
   var loader = document.getElementById('loader');
   var header = document.querySelector('.header');
   var menuButton = document.getElementById('menuButton');
+  var themeToggle = document.getElementById('themeToggle');
   var headerWrap = document.getElementById('headerWrap');
   var primaryNav = document.getElementById('primaryNav');
   var menuOverlay = document.getElementById('menuOverlay');
@@ -37,6 +38,27 @@
   var scrambleFrame = null;
   var scrambleTimer = null;
   var lastScrollY = window.scrollY || 0;
+
+  /* ------------------------------------------------------------
+     Theme
+     ------------------------------------------------------------ */
+  function currentTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  }
+  function applyTheme(theme) {
+    theme = theme === 'dark' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.style.colorScheme = theme;
+    try { localStorage.setItem('ms-theme', theme); } catch (err) { /* no-op */ }
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+      themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      var icon = themeToggle.querySelector('.theme-toggle__icon');
+      if (icon) icon.textContent = theme === 'dark' ? '☀' : '☾';
+    }
+  }
+  function toggleTheme() { applyTheme(currentTheme() === 'dark' ? 'light' : 'dark'); }
+  applyTheme(currentTheme());
 
   /* ------------------------------------------------------------
      Helpers
@@ -408,6 +430,7 @@
      Menu and header
      ------------------------------------------------------------ */
   menuButton.addEventListener('click', toggleMenu);
+  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
   if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
   if (skipBtn) skipBtn.addEventListener('click', function () {
     if (!entryDone) finishIntro(routeFromHash());
